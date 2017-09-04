@@ -1,6 +1,20 @@
 import os
 from setuptools import setup, find_packages
 
+# Utility function to read the README file.
+# Used for the long_description.  It's nice, because now 1) we have a top level
+# README file and 2) it's easier to type in the README file than to put a raw
+# string in below ...
+def read(fname):
+    content = 'not found'
+    try:
+        with open(fname) as file:
+            content = file.read()
+    except:
+        print(u'Warning: failed to open file {0}'.format(fname))
+        pass
+    return content
+
 requires = [
     'lxml',
 ]
@@ -17,7 +31,8 @@ setup(
     ],
     author='David Thorne',
     author_email='davethorne@gmail.com',
-    license='GPLv3+',
+    long_description=read('README.md'),
+    license=read('LICENSE.md'),
     packages=find_packages(),
     install_requires=requires,
     tests_require=requires,
